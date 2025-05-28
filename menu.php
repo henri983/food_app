@@ -151,6 +151,9 @@ if (isset($_SESSION['error'])) {
             <?php endforeach; ?>
         </div>
     </div> -->
+     <div class="container my-5">
+        <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
+        <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="Card image cap">
@@ -161,7 +164,7 @@ if (isset($_SESSION['error'])) {
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="#" class="card-link">Voir le menu...</a>
+    <a href="specialite.php?region=Cameroun" class="card-link">Voir le menu...</a>
   </div>
 </div>
   <div class="card" style="width: 18rem;">
@@ -173,7 +176,7 @@ if (isset($_SESSION['error'])) {
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="#" class="card-link">Voir le menu...</a>
+    <a href="specialite.php?region=Centrafrique" class="card-link">Voir le menu...</a>
   </div>
 </div>
   <div class="card" style="width: 18rem;">
@@ -185,7 +188,7 @@ if (isset($_SESSION['error'])) {
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="#" class="card-link">Voir le menu...</a>
+    <a href="specialite.php?region=Mali" class="card-link">Voir le menu...</a>
   </div>
 </div>
   <div class="card" style="width: 18rem;">
@@ -197,7 +200,7 @@ if (isset($_SESSION['error'])) {
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="#" class="card-link">Voir le menu...</a>
+    <a href="specialite.php?region=Cote_d_Ivoire" class="card-link">Voir le menu...</a>
   </div>
 </div>
  <div class="card" style="width: 18rem;">
@@ -209,8 +212,9 @@ if (isset($_SESSION['error'])) {
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="#" class="card-link">Voir le menu...</a>
+    <a href="specialite.php?region=Senegal" class="card-link">Voir le menu...</a>
   </div>
+</div>
 </div>
 </div>
 <?php require_once 'footer.php' ?>
