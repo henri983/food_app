@@ -2,7 +2,7 @@
 // db_connect.php
 
 $host = 'localhost'; // Ou l'adresse IP de votre serveur de base de données
-$db   = 'food_app_db';
+$db   = 'food_app';
 $user = 'root';      // Votre nom d'utilisateur MySQL
 $pass = '';          // Votre mot de passe MySQL (laissez vide si pas de mot de passe)
 $charset = 'utf8mb4';
@@ -22,4 +22,5 @@ try {
     // mais plutôt un message générique et logguer l'erreur.
     die("Erreur de connexion à la base de données: " . $e->getMessage());
 }
+
 ?>

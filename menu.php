@@ -155,7 +155,7 @@ if (isset($_SESSION['error'])) {
         <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
         <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="card" style="width: 18rem;">
+   <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Spécialités Camerounaises</h5>
