@@ -30,7 +30,7 @@ $food_items = [
         'description' => 'Sélection de sushis et makis frais du jour.',
         'price' => 18.00,
         'image' => 'images/sushi.jpg'
-    ]
+    ],
 ];
 
 // --- Handle adding to cart (same as index.php) ---
@@ -113,7 +113,7 @@ if (isset($_SESSION['error'])) {
             </div>
         </div>
     </nav> -->
-
+<!-- 
     <div class="container my-5">
         <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
         <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
@@ -150,7 +150,69 @@ if (isset($_SESSION['error'])) {
                 </div>
             <?php endforeach; ?>
         </div>
-    </div>
+    </div> -->
+ <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Spécialités Camerounaises</h5>
+    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
+  </div>
+ 
+  <div class="card-body">
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Voir le menu...</a>
+  </div>
+</div>
+  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Spécialités Centrafricaines</h5>
+    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaines.</p>
+  </div>
+ 
+  <div class="card-body">
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Voir le menu...</a>
+  </div>
+</div>
+  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Spécialités Maliennes</h5>
+    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
+  </div>
+ 
+  <div class="card-body">
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Voir le menu...</a>
+  </div>
+</div>
+  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Spécialités Ivoiriennes</h5>
+    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
+  </div>
+ 
+  <div class="card-body">
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Voir le menu...</a>
+  </div>
+</div>
+ <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Spécialités Sénégalaises</h5>
+    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>
+  </div>
+ 
+  <div class="card-body">
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <a href="#" class="card-link">Voir le menu...</a>
+  </div>
+</div>
+</div>
 <?php require_once 'footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
