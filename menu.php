@@ -5,31 +5,33 @@ require_once 'db_connect.php';
 $food_items = [
     [
         'id' => 1,
-        'name' => 'Burger Classique',
-        'description' => 'Un délicieux burger avec viande de bœuf, fromage, salade, tomate et oignon.',
-        'price' => 9.99,
+        'name' => 'Specialités Camerounaises',
+        'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique camerounaise.',
         'image' => 'images/burger.jpg'
     ],
     [
         'id' => 2,
-        'name' => 'Pizza Margherita',
-        'description' => 'La classique pizza Margherita avec sauce tomate, mozzarella fraîche et basilic.',
-        'price' => 12.50,
+        'name' => 'Spécialités Centrafricaines',
+        'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique centrafricaine.',
         'image' => 'images/pizza.jpg'
     ],
     [
         'id' => 3,
-        'name' => 'Salade César',
-        'description' => 'Salade croquante avec poulet grillé, croûtons, parmesan et sauce César.',
-        'price' => 8.75,
+        'name' => 'Spécialités Maliennes',
+        'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique malienne.',
         'image' => 'images/salad.jpg'
     ],
     [
         'id' => 4,
-        'name' => 'Sushi Assorti',
-        'description' => 'Sélection de sushis et makis frais du jour.',
-        'price' => 18.00,
+        'name' => 'Spécialités Ivoiriennes',
+        'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique ivoirienne.',
         'image' => 'images/sushi.jpg'
+    ],
+    [
+        'id' => 5,
+        'name' => 'Spécialités Sénégalaises',
+        'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
+        'image' => 'images/pasta.jpg'
     ],
 ];
 
@@ -155,12 +157,19 @@ if (isset($_SESSION['error'])) {
         <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
         <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col">
+
    <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="Card image cap">
+  <img src="..." class="card-img-top" alt="images drp/Cameroun.png">
   <div class="card-body">
+    <div class="col">
+        <div class="card h-100 mb-4" >
+
     <h5 class="card-title">Spécialités Camerounaises</h5>
     <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
-  </div>
+    </div>
+    </div>
+ </div>
  
   <div class="card-body">
     <!-- <a href="#" class="card-link">Card link</a> -->
@@ -168,7 +177,7 @@ if (isset($_SESSION['error'])) {
   </div>
 </div>
   <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="Card image cap">
+  <img src="..." class="card-img-top" alt="images drp/Centrafrique.png">
   <div class="card-body">
     <h5 class="card-title">Spécialités Centrafricaines</h5>
     <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaines.</p>
@@ -180,7 +189,7 @@ if (isset($_SESSION['error'])) {
   </div>
 </div>
   <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="Card image cap">
+  <img src="..." class="card-img-top" alt="images drp/Mali.png">
   <div class="card-body">
     <h5 class="card-title">Spécialités Maliennes</h5>
     <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
@@ -192,7 +201,7 @@ if (isset($_SESSION['error'])) {
   </div>
 </div>
   <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="Card image cap">
+  <img src="..." class="card-img-top" alt="images drp/Côte_d'Ivoire.png">
   <div class="card-body">
     <h5 class="card-title">Spécialités Ivoiriennes</h5>
     <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
@@ -204,7 +213,7 @@ if (isset($_SESSION['error'])) {
   </div>
 </div>
  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="Card image cap">
+  <img src="..." class="card-img-top" alt="images drp/Sénégal.png">
   <div class="card-body">
     <h5 class="card-title">Spécialités Sénégalaises</h5>
     <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>

@@ -2,7 +2,7 @@
 // db_connect.php
 
 $host = 'localhost'; // Ou l'adresse IP de votre serveur de base de données
-$db   = 'food_app';
+$db   = 'food_app_db';
 $user = 'root';      // Votre nom d'utilisateur MySQL
 $pass = '';          // Votre mot de passe MySQL (laissez vide si pas de mot de passe)
 $charset = 'utf8mb4';
