@@ -154,79 +154,90 @@ if (isset($_SESSION['error'])) {
             <?php endforeach; ?>
         </div>
     </div> -->
-     <div class="container my-5">
-        <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
-        <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col">
+ <div class="container my-5">
+  <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
+  <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
 
-   <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="images drp/Cameroun.png">
-  <div class="card-body">
-    <div class="col">
-        <div class="card h-100 mb-4" >
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    
+    <!-- Cameroun -->
+    <div class="col h-100">
+      <div class="card h-100">
+        <img src="images drp/Cameroun.png" class="card-img-top" alt="Spécialités Camerounaises">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Spécialités Camerounaises</h5>
+          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
+          <div class="mt-auto">
+            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
-    <h5 class="card-title">Spécialités Camerounaises</h5>
-    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Centrafrique -->
+    <div class="col h-100">
+      <div class="card h-100">
+        <img src="images drp/Centrafrique.png" class="card-img-top" alt="Spécialités Centrafricaines">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Spécialités Centrafricaines</h5>
+          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaine.</p>
+          <div class="mt-auto">
+            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+
+          </div>
+        </div>
+      </div>
     </div>
- </div>
- 
-  <div class="card-body">
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="specialite.php?region=Cameroun" class="card-link">Voir le menu...</a>
+
+    <!-- Mali -->
+    <div class="col h-100">
+      <div class="card h-100">
+        <img src="images drp/Mali.png" class="card-img-top" alt="Spécialités Maliennes">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Spécialités Maliennes</h5>
+          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
+          <div class="mt-auto">
+            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Côte d'Ivoire -->
+    <div class="col h-100">
+      <div class="card h-100">
+        <img src="images drp/Côte_d'Ivoire.png" class="card-img-top" alt="Spécialités Ivoiriennes">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Spécialités Ivoiriennes</h5>
+          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
+          <div class="mt-auto">
+            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sénégal -->
+    <div class="col h-100">
+      <div class="card h-100">
+        <img src="images drp/Sénégal.png" class="card-img-top" alt="Spécialités Sénégalaises">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Spécialités Sénégalaises</h5>
+          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>
+          <div class="mt-auto">
+            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="images drp/Centrafrique.png">
-  <div class="card-body">
-    <h5 class="card-title">Spécialités Centrafricaines</h5>
-    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaines.</p>
-  </div>
- 
-  <div class="card-body">
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="specialite.php?region=Centrafrique" class="card-link">Voir le menu...</a>
-  </div>
-</div>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="images drp/Mali.png">
-  <div class="card-body">
-    <h5 class="card-title">Spécialités Maliennes</h5>
-    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
-  </div>
- 
-  <div class="card-body">
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="specialite.php?region=Mali" class="card-link">Voir le menu...</a>
-  </div>
-</div>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="images drp/Côte_d'Ivoire.png">
-  <div class="card-body">
-    <h5 class="card-title">Spécialités Ivoiriennes</h5>
-    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
-  </div>
- 
-  <div class="card-body">
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="specialite.php?region=Cote_d_Ivoire" class="card-link">Voir le menu...</a>
-  </div>
-</div>
- <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="images drp/Sénégal.png">
-  <div class="card-body">
-    <h5 class="card-title">Spécialités Sénégalaises</h5>
-    <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>
-  </div>
- 
-  <div class="card-body">
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <a href="specialite.php?region=Senegal" class="card-link">Voir le menu...</a>
-  </div>
-</div>
-</div>
-</div>
+
 <?php require_once 'footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

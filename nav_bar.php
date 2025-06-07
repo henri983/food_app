@@ -1,3 +1,9 @@
+<?php if (isset($_SESSION['user_id'])): ?>
+    <li class="nav-item">
+        <a class="nav-link" href="profil.php">Mon profil</a>
+    </li>
+<?php endif; ?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Mon Restaurant</a>
