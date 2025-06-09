@@ -1,97 +1,111 @@
 <?php
+
 session_start();
+
 require_once 'db_connect.php';
 
-$plat_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-if ($plat_id <= 0) {
+
+
+$region = isset($_GET['region']) ? $_GET['region'] : '';
+
+if (empty($region)) {
+
     header('Location: menu.php');
+
     exit;
+
 }
 
-// Récupération du plat depuis la base
-$stmt = $pdo->prepare("SELECT * FROM plats WHERE id = ?");
-$stmt->execute([$plat_id]);
-$plat = $stmt->fetch();
 
-if (!$plat) {
-    $_SESSION['error'] = "Plat non trouvé.";
-    header('Location: menu.php');
-    exit;
-}
 
-// Traitement ajout panier depuis cette page
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $quantity = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
+// Récupérer tous les plats de la région
 
-    if ($quantity > 0) {
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
+$stmt = $pdo->prepare("SELECT * FROM plats WHERE region = ?");
 
-        if (isset($_SESSION['cart'][$plat_id])) {
-            $_SESSION['cart'][$plat_id]['quantity'] += $quantity;
-        } else {
-            $_SESSION['cart'][$plat_id] = [
-                'id' => $plat['id'],
-                'name' => $plat['nom'],
-                'price' => $plat['prix'],
-                'quantity' => $quantity
-            ];
-        }
+$stmt->execute([$region]);
 
-        $_SESSION['message'] = "Produit ajouté au panier !";
-        header("Location: details.php?id=" . $plat_id);
-        exit;
-    } else {
-        $_SESSION['error'] = "Quantité invalide.";
-    }
-}
+$plats = $stmt->fetchAll();
 
-$message = $_SESSION['message'] ?? '';
-$error = $_SESSION['error'] ?? '';
-unset($_SESSION['message'], $_SESSION['error']);
 ?>
 
+
+
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Détails du plat - <?= htmlspecialchars($plat['nom']) ?></title>
+
+    <title>Plats de la région <?= htmlspecialchars($region) ?></title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
+
 <?php require_once 'nav_bar.php'; ?>
 
-<div class="container my-5">
-    <a href="menu.php" class="btn btn-sm btn-outline-primary mb-3">&larr; Retour au menu</a>
 
-    <?php if ($message): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($message) ?></div>
-    <?php endif; ?>
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+
+<div class="container my-5">
+
+    <a href="menu.php" class="btn btn-sm btn-outline-primary mb-4">&larr; Retour au menu</a>
+
+
+
+    <h2 class="mb-4">Plats de la région : <?= ucfirst($region) ?></h2>
+
+
 
     <div class="row">
-        <div class="col-md-6">
-            <img src="<?= htmlspecialchars($plat['image']) ?>" alt="<?= htmlspecialchars($plat['nom']) ?>" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-md-6">
-            <h2><?= htmlspecialchars($plat['nom']) ?></h2>
-            <p class="text-muted"><strong>Région :</strong> <?= ucfirst(str_replace('_', ' ', $plat['region'])) ?></p>
-            <p><?= htmlspecialchars($plat['description']) ?></p>
-            <p class="fs-4 fw-bold text-success"><?= number_format($plat['prix'], 2) ?> &euro;</p>
 
-            <form method="post" class="d-flex align-items-center mt-4">
-                <input type="number" name="quantity" value="1" min="1" class="form-control me-2" style="width:100px;">
-                <button type="submit" name="add_to_cart" class="btn btn-primary">Ajouter au panier</button>
-            </form>
-        </div>
+        <?php if (count($plats) > 0): ?>
+
+            <?php foreach ($plats as $plat): ?>
+
+                <div class="col-md-4 mb-4">
+
+                    <div class="card h-100 shadow-sm">
+
+                        <img src="<?= htmlspecialchars($plat['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($plat['nom']) ?>">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <h5 class="card-title"><?= htmlspecialchars($plat['nom']) ?></h5>
+
+                            <p class="card-text"><?= htmlspecialchars($plat['description']) ?></p>
+
+                            <p class="fw-bold text-success"><?= number_format($plat['prix'], 2) ?> €</p>
+
+                            <a href="plat.php?id=<?= $plat['id'] ?>" class="btn btn-outline-secondary mt-auto">Voir le plat</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <?php endforeach; ?>
+
+        <?php else: ?>
+
+            <p class="text-muted">Aucun plat trouvé pour cette région.</p>
+
+        <?php endif; ?>
+
     </div>
+
 </div>
 
+
+
 <?php require_once 'footer.php'; ?>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

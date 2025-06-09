@@ -168,7 +168,7 @@ if (isset($_SESSION['error'])) {
           <h5 class="card-title">Spécialités Camerounaises</h5>
           <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
           <div class="mt-auto">
-            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+            <a href="specialites.php?region=cameroun" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
           </div>
         </div>
@@ -183,7 +183,7 @@ if (isset($_SESSION['error'])) {
           <h5 class="card-title">Spécialités Centrafricaines</h5>
           <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaine.</p>
           <div class="mt-auto">
-            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+            <a href="specialites.php?region=centrafrique" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
           </div>
         </div>
@@ -198,7 +198,7 @@ if (isset($_SESSION['error'])) {
           <h5 class="card-title">Spécialités Maliennes</h5>
           <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
           <div class="mt-auto">
-            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+            <a href="specialites.php?region=mali" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
           </div>
         </div>
@@ -213,7 +213,7 @@ if (isset($_SESSION['error'])) {
           <h5 class="card-title">Spécialités Ivoiriennes</h5>
           <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
           <div class="mt-auto">
-            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+            <a href="specialites.php?region=cote_divoire" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
           </div>
         </div>
@@ -228,7 +228,7 @@ if (isset($_SESSION['error'])) {
           <h5 class="card-title">Spécialités Sénégalaises</h5>
           <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>
           <div class="mt-auto">
-            <a href="specialites.php?id=<?= $item['id'] ?>" class="btn btn-outline-secondary mt-2">Voir les détails</a>
+            <a href="specialites.php?region=senegal" class="btn btn-outline-secondary mt-2">Voir les détails</a>
 
           </div>
         </div>
