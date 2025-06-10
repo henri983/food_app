@@ -7,7 +7,7 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password']; // Password will be hashed in real app
+    $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
@@ -19,19 +19,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     } elseif (strlen($password) < 6) {
         $error = "Le mot de passe doit contenir au moins 6 caractères.";
     } else {
-        // --- In a real application, you would: ---
-        // 1. Connect to your database.
-        // 2. Check if username or email already exists.
-        // 3. Hash the password: $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        // 4. Insert user data into the 'users' table.
-        // 5. Redirect to login page on success.
+        // Hachage du mot de passe
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $_SESSION['message'] = "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-        header('Location: connexion.php');
-        exit;
+        // Préparation de la requête
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        if ($stmt) {
+            $stmt->bind_param("sss", $username, $email, $hashed_password);
+            if ($stmt->execute()) {
+                $_SESSION['message'] = "Inscription réussie ! Vous pouvez maintenant vous connecter.";
+                header('Location: connexion.php');
+                exit;
+            } else {
+                $error = "Erreur lors de l'inscription : " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $error = "Erreur de préparation de la requête.";
+        }
     }
-    $_SESSION['error'] = $error; // Store error in session for redirect
-    header('Location: inscription.php'); // Redirect to prevent form resubmission
+    $_SESSION['error'] = $error;
+    header('Location: inscription.php');
     exit;
 }
 
@@ -44,6 +52,7 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

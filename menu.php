@@ -1,46 +1,52 @@
 <?php
 session_start();
-require_once 'db_connect.php';
-// --- Food Item Data (usually fetched from a database) ---
+
+// --- Food Items avec prix ---
 $food_items = [
     [
         'id' => 1,
-        'name' => 'Specialités Camerounaises',
+        'name' => 'Spécialités Camerounaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique camerounaise.',
-        'image' => 'images/burger.jpg'
+        'image' => 'images/burger.jpg',
+        'price' => 12.50
     ],
     [
         'id' => 2,
         'name' => 'Spécialités Centrafricaines',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique centrafricaine.',
-        'image' => 'images/pizza.jpg'
+        'image' => 'images/pizza.jpg',
+        'price' => 10.00
     ],
     [
         'id' => 3,
         'name' => 'Spécialités Maliennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique malienne.',
-        'image' => 'images/salad.jpg'
+        'image' => 'images/salad.jpg',
+        'price' => 9.00
     ],
     [
         'id' => 4,
         'name' => 'Spécialités Ivoiriennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique ivoirienne.',
-        'image' => 'images/sushi.jpg'
+        'image' => 'images/sushi.jpg',
+        'price' => 11.00
     ],
     [
         'id' => 5,
         'name' => 'Spécialités Sénégalaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
-        'image' => 'images/pasta.jpg'
+        'image' => 'images/pasta.jpg',
+        'price' => 13.50
     ],
 ];
 
-// --- Handle adding to cart (same as index.php) ---
+// --- Gestion ajout au panier ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $product_id = filter_var($_POST['product_id'], FILTER_SANITIZE_NUMBER_INT);
     $quantity = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
 
     if ($product_id && $quantity > 0) {
+        // Trouver l'article dans la liste
         $found_item = null;
         foreach ($food_items as $item) {
             if ($item['id'] == $product_id) {
@@ -48,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
                 break;
             }
         }
-
         if ($found_item) {
             if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
@@ -70,175 +75,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     } else {
         $_SESSION['error'] = "Quantité invalide.";
     }
-    header('Location: menu.php'); // Redirect back to menu page
+    header('Location: menu.php');
     exit;
 }
 
-$message = '';
-$error = '';
-if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-if (isset($_SESSION['error'])) {
-    $error = $_SESSION['error'];
-    unset($_SESSION['error']);
-}
+$message = $_SESSION['message'] ?? '';
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['message'], $_SESSION['error']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notre Menu Complet</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menu - Notre Restaurant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <?php require_once 'nav_bar.php'?>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Mon Restaurant</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="menu.php">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="connexion.php">Connexion</a></li>
-                    <li class="nav-item"><a class="nav-link" href="inscription.php">Inscription</a></li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Panier (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)</a>
-                    </li>
-                </ul>
-            </div>
+
+<?php require_once 'nav_bar.php'; ?>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
+    <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
+
+    <?php if ($message): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= htmlspecialchars($message) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
         </div>
-    </nav> -->
-<!-- 
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
-        <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
+    <?php endif; ?>
+    <?php if ($error): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= htmlspecialchars($error) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+        </div>
+    <?php endif; ?>
 
-        <?php if ($message): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?php echo htmlspecialchars($message); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
-        <?php if ($error): ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <?php echo htmlspecialchars($error); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <?php foreach ($food_items as $item): ?>
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <img src="<?php echo htmlspecialchars($item['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($item['name']); ?>" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($item['name']); ?></h5>
-                            <p class="card-text text-muted"><?php echo htmlspecialchars($item['description']); ?></p>
-                            <p class="card-text fs-4 fw-bold text-success"><?php echo number_format($item['price'], 2); ?> &euro;</p>
-                            <form action="" method="post" class="d-flex align-items-center">
-                                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($item['id']); ?>">
-                                <input type="number" name="quantity" value="1" min="1" max="10" class="form-control me-2" style="width: 80px;">
-                                <button type="submit" name="add_to_cart" class="btn btn-primary flex-grow-1">Ajouter au panier</button>
-                            </form>
-                        </div>
-                    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <?php foreach ($food_items as $item): ?>
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img src="<?= htmlspecialchars($item['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($item['name']) ?>" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title"><?= htmlspecialchars($item['name']) ?></h5>
+                    <p class="card-text text-muted"><?= htmlspecialchars($item['description']) ?></p>
+                    <p class="card-text fs-4 fw-bold text-success"><?= number_format($item['price'], 2) ?> &euro;</p>
+                    <form action="" method="post" class="mt-auto d-flex align-items-center gap-2">
+                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>" />
+                        <input type="number" name="quantity" value="1" min="1" max="10" class="form-control" style="width: 80px;" />
+                        <button type="submit" name="add_to_cart" class="btn btn-primary flex-grow-1">Ajouter au panier</button>
+                    </form>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
-    </div> -->
- <div class="container my-5">
-  <h1 class="text-center mb-4">Découvrez Notre Menu Complet</h1>
-  <p class="text-center mb-5">Commandez vos plats préférés directement ici !</p>
-
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    
-    <!-- Cameroun -->
-    <div class="col h-100">
-      <div class="card h-100">
-        <img src="images drp/Cameroun.png" class="card-img-top" alt="Spécialités Camerounaises">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Spécialités Camerounaises</h5>
-          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Camerounaise.</p>
-          <div class="mt-auto">
-            <a href="specialites.php?region=cameroun" class="btn btn-outline-secondary mt-2">Voir les détails</a>
-
-          </div>
-        </div>
-      </div>
+        <?php endforeach; ?>
     </div>
-
-    <!-- Centrafrique -->
-    <div class="col h-100">
-      <div class="card h-100">
-        <img src="images drp/Centrafrique.png" class="card-img-top" alt="Spécialités Centrafricaines">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Spécialités Centrafricaines</h5>
-          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Centrafricaine.</p>
-          <div class="mt-auto">
-            <a href="specialites.php?region=centrafrique" class="btn btn-outline-secondary mt-2">Voir les détails</a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mali -->
-    <div class="col h-100">
-      <div class="card h-100">
-        <img src="images drp/Mali.png" class="card-img-top" alt="Spécialités Maliennes">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Spécialités Maliennes</h5>
-          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Malienne.</p>
-          <div class="mt-auto">
-            <a href="specialites.php?region=mali" class="btn btn-outline-secondary mt-2">Voir les détails</a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Côte d'Ivoire -->
-    <div class="col h-100">
-      <div class="card h-100">
-        <img src="images drp/Côte_d'Ivoire.png" class="card-img-top" alt="Spécialités Ivoiriennes">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Spécialités Ivoiriennes</h5>
-          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Ivoirienne.</p>
-          <div class="mt-auto">
-            <a href="specialites.php?region=cote_divoire" class="btn btn-outline-secondary mt-2">Voir les détails</a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sénégal -->
-    <div class="col h-100">
-      <div class="card h-100">
-        <img src="images drp/Sénégal.png" class="card-img-top" alt="Spécialités Sénégalaises">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Spécialités Sénégalaises</h5>
-          <p class="card-text">Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique Sénégalaise.</p>
-          <div class="mt-auto">
-            <a href="specialites.php?region=senegal" class="btn btn-outline-secondary mt-2">Voir les détails</a>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
-<?php require_once 'footer.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
