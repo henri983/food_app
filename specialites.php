@@ -73,12 +73,14 @@ $plats = $stmt->fetchAll();
                         <img src="<?= htmlspecialchars($plat['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($plat['nom']) ?>">
 
                         <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><?= htmlspecialchars($plat['region']) ?></h5>
 
                             <h5 class="card-title"><?= htmlspecialchars($plat['nom']) ?></h5>
 
                             <p class="card-text"><?= htmlspecialchars($plat['description']) ?></p>
 
                             <p class="fw-bold text-success"><?= number_format($plat['prix'], 2) ?> €</p>
+                            
 
                             <a href="plat.php?id=<?= $plat['id'] ?>" class="btn btn-outline-secondary mt-auto">Voir le plat</a>
 
