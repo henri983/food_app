@@ -7,35 +7,35 @@ $food_items = [
         'id' => 1,
         'name' => 'Spécialités Camerounaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique camerounaise.',
-        'image' => 'images/burger.jpg',
+        'image' => 'images_drp/CAmeroun.png',
         'price' => 12.50
     ],
     [
         'id' => 2,
         'name' => 'Spécialités Centrafricaines',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique centrafricaine.',
-        'image' => 'images/pizza.jpg',
+        'image' => 'images_drp/Centrafrique.png',
         'price' => 10.00
     ],
     [
         'id' => 3,
         'name' => 'Spécialités Maliennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique malienne.',
-        'image' => 'images/salad.jpg',
+        'image' => 'images_drp/Mali.png',
         'price' => 9.00
     ],
     [
         'id' => 4,
         'name' => 'Spécialités Ivoiriennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique ivoirienne.',
-        'image' => 'images/sushi.jpg',
+        'image' => 'images_drp/Cote_d_Ivoire.png',
         'price' => 11.00
     ],
     [
         'id' => 5,
         'name' => 'Spécialités Sénégalaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
-        'image' => 'images/pasta.jpg',
+        'image' => 'images_drp/Senegal.png',
         'price' => 13.50
     ],
 ];
