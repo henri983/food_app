@@ -48,52 +48,9 @@ unset($_SESSION['message'], $_SESSION['error']);
 <head>
     <meta charset="UTF-8">
    <title>Restaurant Africain - Saveurs d'Afrique</title>
+   <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('logo1.jpeg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            text-align: center;
-        }
-
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.6);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 4em;
-            margin: 0;
-            color: #FFD700;
-        }
-
-        p {
-            font-size: 1.5em;
-            margin-top: 20px;
-            width: 60%;
-        }
-
-        .btn {
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: #FFD700;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #e6c200;
-        }
+       
     </style>
 </head>
 <body>
