@@ -32,8 +32,6 @@
     border-radius: 5px  ;
 }
 
-
-<<<<<<< HEAD
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -102,7 +100,7 @@ p {
 .text-center{
     text-align: center !important;
 }
-=======
+
 
 
 
@@ -153,4 +151,4 @@ p {
         .btn:hover {
             background-color: #e6c200;
         }
->>>>>>> 40e615eef858301fd66a7e2049b45ea52ca3da4f
+

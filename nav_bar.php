@@ -1,14 +1,8 @@
 <?php if (isset($_SESSION['user_id'])): ?>
-    <li class="nav-item">
-        <a class="nav-link" href="profil.php">Mon profil</a>
-    </li>
+    
 <?php endif; ?>
 
-<?php if (isset($_SESSION['user_id'])): ?>
-    <li class="nav-item">
-        <a class="nav-link" href="deconnexion.php">Déconnexion</a>
-    </li>
-<?php endif; ?>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
@@ -19,7 +13,6 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav me-auto">
         <li class="nav-item"><a href="menu.php" class="nav-link active">Menu</a></li>
-        <li class="nav-item"><a href="connexion.php" class="nav-link">Connexion</a></li>
         <li class="nav-item"><a href="inscription.php" class="nav-link">Inscription</a></li>
       </ul>
       <ul class="navbar-nav">
@@ -31,6 +24,11 @@
         <li class="nav-item">
         <a class="nav-link" href="profil.php">Mon profil</a>
     </li>
+    <?php if (isset($_SESSION['user_id'])): ?>
+    <li class="nav-item">
+        <a class="nav-link" href="deconnexion.php">Déconnexion</a>
+    </li>
+<?php endif; ?>
       </ul>
     </div>
   </div>

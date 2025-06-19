@@ -18,12 +18,11 @@ if (!$plat) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $quantity = max(1, (int) $_POST['quantity']);
+// Ajouter au panier
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quantity'])) {
+    $quantity = max(1, (int)$_POST['quantity']);
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
+    if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
     if (isset($_SESSION['cart'][$plat_id])) {
         $_SESSION['cart'][$plat_id]['quantity'] += $quantity;
@@ -40,51 +39,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     header("Location: details.php?id=" . $plat_id);
     exit;
 }
-
-$message = $_SESSION['message'] ?? '';
-$error = $_SESSION['error'] ?? '';
-unset($_SESSION['message'], $_SESSION['error']);
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails du plat - <?= htmlspecialchars($plat['nom']) ?></title>
+    <title>Détails - <?= htmlspecialchars($plat['nom']) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php require_once 'nav_bar.php'; ?>
 
 <div class="container my-5">
-    <a href="menu.php" class="btn btn-sm btn-outline-primary mb-3">&larr; Retour au menu</a>
+    <a href="javascript:history.back()" class="btn btn-outline-primary mb-4">&larr; Retour</a>
 
-    <?php if ($message): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($message) ?></div>
-    <?php endif; ?>
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+    <?php if (!empty($_SESSION['message'])): ?>
+        <div class="alert alert-success"><?= $_SESSION['message']; unset($_SESSION['message']); ?></div>
     <?php endif; ?>
 
     <div class="row">
         <div class="col-md-6">
-            <img src="<?= htmlspecialchars($plat['image']) ?>" alt="<?= htmlspecialchars($plat['nom']) ?>" class="img-fluid rounded shadow">
+            <img src="<?= htmlspecialchars($plat['image']) ?>" class="img-fluid rounded shadow" alt="<?= htmlspecialchars($plat['nom']) ?>">
         </div>
         <div class="col-md-6">
             <h2><?= htmlspecialchars($plat['nom']) ?></h2>
-            <p class="text-muted"><strong>Région :</strong> <?= ucfirst(str_replace('_', ' ', $plat['region'])) ?></p>
+            <p class="text-muted">Région : <?= ucfirst($plat['region']) ?></p>
             <p><?= htmlspecialchars($plat['description']) ?></p>
-            <p class="fs-4 fw-bold text-success"><?= number_format($plat['prix'], 2) ?> &euro;</p>
+            <h4 class="text-success fw-bold"><?= number_format($plat['prix'], 2) ?> €</h4>
 
-            <form method="post" class="d-flex align-items-center mt-4">
-                <input type="number" name="quantity" value="1" min="1" class="form-control me-2" style="width:100px;">
-                <button type="submit" name="add_to_cart" class="btn btn-primary">Ajouter au panier</button>
+            <form method="post" class="mt-4">
+                <label for="quantity" class="form-label">Quantité</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" class="form-control mb-3" style="width:100px;">
+                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
             </form>
         </div>
     </div>
 </div>
 
 <?php require_once 'footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

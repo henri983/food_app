@@ -2,52 +2,12 @@
 session_start();
 require_once 'db_connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plat_id'], $_POST['quantite'])) {
-    $plat_id = (int) $_POST['plat_id'];
-    $quantite = (int) $_POST['quantite'];
-
-    // Vérifier si le plat existe
-    $stmt = $pdo->prepare("SELECT * FROM plats WHERE id = ?");
-    $stmt->execute([$plat_id]);
-    $plat = $stmt->fetch();
-
-    if ($plat) {
-        // Initialiser le panier si vide
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-
-        // Vérifier si le plat est déjà dans le panier
-        $found = false;
-        foreach ($_SESSION['cart'] as &$item) {
-            if ($item['id'] == $plat['id']) {
-                $item['quantite'] += $quantite;
-                $found = true;
-                break;
-            }
-        }
-        unset($item);
-
-        // Ajouter le plat s'il n'est pas encore dans le panier
-        if (!$found) {
-            $_SESSION['cart'][] = [
-                'id' => $plat['id'],
-                'name' => $plat['nom'],
-                'price' => $plat['prix'],
-                'quantite' => $quantite
-            ];
-        }
-
-        // Redirection vers le panier
-        header('Location: panier.php');
-        exit;
-    }
-}
-
-header('Location: specialites.php');
-exit;
+// ✅ Initialisation des variables
+$cart = $_SESSION['cart'] ?? [];
+$message = $_SESSION['message'] ?? null;
+$error = $_SESSION['error'] ?? null;
+unset($_SESSION['message'], $_SESSION['error']);
 ?>
-<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -126,9 +86,6 @@ exit;
             </table>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="vider_panier.php" class="btn btn-danger" onclick="return confirm('Vider tout le panier ?')">Vider le panier</a>
-                </div>
-                <div>
                     <button type="submit" class="btn btn-warning">Mettre à jour le panier</button>
                     <a href="valider_commande.php" class="btn btn-success ms-2">Valider la commande</a>
                 </div>
@@ -140,5 +97,3 @@ exit;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-=======
->>>>>>> 40e615eef858301fd66a7e2049b45ea52ca3da4f
