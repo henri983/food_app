@@ -37,6 +37,7 @@ $user = $stmt->fetch();
     <meta charset="UTF-8">
     <title>Mon profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php require_once 'nav_bar.php'; ?>

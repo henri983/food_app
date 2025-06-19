@@ -60,7 +60,7 @@ if (isset($_SESSION['error'])) {
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php require_once 'nav_bar.php' ?>
