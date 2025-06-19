@@ -8,35 +8,40 @@ $food_items = [
         'name' => 'Spécialités Camerounaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique camerounaise.',
         'image' => 'images_drp/CAmeroun.png',
-        'price' => 12.50
+        'price' => 12.50,
+        'regionName' => 'cameroun'
     ],
     [
         'id' => 2,
         'name' => 'Spécialités Centrafricaines',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique centrafricaine.',
         'image' => 'images_drp/Centrafrique.png',
-        'price' => 10.00
+        'price' => 10.00,
+        'regionName' => 'centrafrique'
     ],
     [
         'id' => 3,
         'name' => 'Spécialités Maliennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique malienne.',
         'image' => 'images_drp/Mali.png',
-        'price' => 9.00
+        'price' => 9.00,
+        'regionName' => 'mali'
     ],
     [
         'id' => 4,
         'name' => 'Spécialités Ivoiriennes',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique ivoirienne.',
         'image' => 'images_drp/Cote_d_Ivoire.png',
-        'price' => 11.00
+        'price' => 11.00,
+        'regionName' => 'cote_divoire'
     ],
     [
         'id' => 5,
         'name' => 'Spécialités Sénégalaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
         'image' => 'images_drp/Senegal.png',
-        'price' => 13.50
+        'price' => 13.50,
+        'regionName' => 'senegal'
     ],
 ];
 
@@ -112,6 +117,7 @@ unset($_SESSION['message'], $_SESSION['error']);
         </div>
     <?php endif; ?>
 
+    
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <?php foreach ($food_items as $item): ?>
         <div class="col">
@@ -120,11 +126,9 @@ unset($_SESSION['message'], $_SESSION['error']);
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><?= htmlspecialchars($item['name']) ?></h5>
                     <p class="card-text text-muted"><?= htmlspecialchars($item['description']) ?></p>
-                    <p class="card-text fs-4 fw-bold text-success"><?= number_format($item['price'], 2) ?> &euro;</p>
                     <form action="" method="post" class="mt-auto d-flex align-items-center gap-2">
                         <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>" />
-                        <input type="number" name="quantity" value="1" min="1" max="10" class="form-control" style="width: 80px;" />
-                        <button type="submit" name="add_to_cart" class="btn btn-primary flex-grow-1">Ajouter au panier</button>
+                        <button class="btn btn-outline-primary" class="btn btn-outline-secondary mt-2"><a href="specialites.php?region=<?= htmlspecialchars($item['regionName']) ?>">Voir les plats</a></button>
                     </form>
                 </div>
             </div>
