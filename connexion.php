@@ -4,18 +4,18 @@ require_once 'db_connect.php';
 
 $message = '';
 $error = '';
-
+// Vérification de la méthode de requête et du bouton de connexion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
-
+// Validation des entrées
     if (empty($email) || empty($password)) {
         $error = "Veuillez remplir tous les champs.";
-    } else {
+    } else {// Vérification de l'email
         $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
-
+// Si l'utilisateur existe et que le mot de passe est correct
         if ($user && password_verify($password, $user['password_hash'])) {
             if (!$user['approuve']) {
                 $error = "Votre compte n’a pas encore été approuvé.";
