@@ -8,7 +8,6 @@ if ($plat_id <= 0) {
     exit;
 }
 
-// Récupération du plat depuis la base
 $stmt = $pdo->prepare("SELECT * FROM plats WHERE id = ?");
 $stmt->execute([$plat_id]);
 $plat = $stmt->fetch();
@@ -19,32 +18,27 @@ if (!$plat) {
     exit;
 }
 
-// Traitement ajout panier depuis cette page
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
-    $quantity = filter_var($_POST['quantity'], FILTER_SANITIZE_NUMBER_INT);
+    $quantity = max(1, (int) $_POST['quantity']);
 
-    if ($quantity > 0) {
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-
-        if (isset($_SESSION['cart'][$plat_id])) {
-            $_SESSION['cart'][$plat_id]['quantity'] += $quantity;
-        } else {
-            $_SESSION['cart'][$plat_id] = [
-                'id' => $plat['id'],
-                'name' => $plat['nom'],
-                'price' => $plat['prix'],
-                'quantity' => $quantity
-            ];
-        }
-
-        $_SESSION['message'] = "Produit ajouté au panier !";
-        header("Location: details.php?id=" . $plat_id);
-        exit;
-    } else {
-        $_SESSION['error'] = "Quantité invalide.";
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
     }
+
+    if (isset($_SESSION['cart'][$plat_id])) {
+        $_SESSION['cart'][$plat_id]['quantity'] += $quantity;
+    } else {
+        $_SESSION['cart'][$plat_id] = [
+            'id' => $plat['id'],
+            'name' => $plat['nom'],
+            'price' => $plat['prix'],
+            'quantity' => $quantity
+        ];
+    }
+
+    $_SESSION['message'] = "Produit ajouté au panier !";
+    header("Location: details.php?id=" . $plat_id);
+    exit;
 }
 
 $message = $_SESSION['message'] ?? '';
@@ -58,7 +52,6 @@ unset($_SESSION['message'], $_SESSION['error']);
     <meta charset="UTF-8">
     <title>Détails du plat - <?= htmlspecialchars($plat['nom']) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php require_once 'nav_bar.php'; ?>
