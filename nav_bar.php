@@ -19,7 +19,6 @@
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav me-auto">
         <li class="nav-item"><a href="menu.php" class="nav-link active">Menu</a></li>
-        <li class="nav-item"><a href="connexion.php" class="nav-link">Connexion</a></li>
         <li class="nav-item"><a href="inscription.php" class="nav-link">Inscription</a></li>
       </ul>
       <ul class="navbar-nav">
