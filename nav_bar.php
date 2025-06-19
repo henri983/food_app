@@ -4,6 +4,12 @@
     </li>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['user_id'])): ?>
+    <li class="nav-item">
+        <a class="nav-link" href="deconnexion.php">Déconnexion</a>
+    </li>
+<?php endif; ?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="index.php">Mon Restaurant</a>
@@ -22,6 +28,9 @@
             Panier (<?php echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0; ?>)
           </a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="profil.php">Mon profil</a>
+    </li>
       </ul>
     </div>
   </div>

@@ -47,8 +47,16 @@ unset($_SESSION['message'], $_SESSION['error']);
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>Restaurant Africain - Saveurs d'Afrique</title>
     <link rel="stylesheet" href="style.css">
+=======
+   <title>Restaurant Africain - Saveurs d'Afrique</title>
+   <link rel="stylesheet" href="style.css">
+    <style>
+       
+    </style>
+>>>>>>> 40e615eef858301fd66a7e2049b45ea52ca3da4f
 </head>
 <body>
     <div class="overlay">

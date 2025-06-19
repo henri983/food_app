@@ -82,9 +82,15 @@ $plats = $stmt->fetchAll();
 
                             <p class="fw-bold text-success"><?= number_format($plat['prix'], 2) ?> €</p>
                             
+                     <form action="" method="post" class="mt-4">
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Quantité</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="10">
+                            
+                        </div>
+                    <button type="submit" name="add_to_cart" class="btn btn-primary w-100">Ajouter au panier</button>   
 
-                            <a href="plat.php?id=<?= $plat['id'] ?>" class="btn btn-outline-secondary mt-auto">Voir le plat</a>
-
+                     </form>
                         </div>
 
                     </div>
