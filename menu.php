@@ -40,9 +40,14 @@ $food_items = [
         'name' => 'Spécialités Sénégalaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
         'image' => 'images_drp/Senegal.png',
+<<<<<<< HEAD
+        'price' => 13.00
+=======
         'price' => 13.50,
         'regionName' => 'senegal'
+>>>>>>> 40e615eef858301fd66a7e2049b45ea52ca3da4f
     ],
+
 ];
 
 // --- Gestion ajout au panier ---
@@ -95,6 +100,7 @@ unset($_SESSION['message'], $_SESSION['error']);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Menu - Notre Restaurant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 

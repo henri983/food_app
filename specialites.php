@@ -54,6 +54,7 @@ unset($_SESSION['message']);
     <meta charset="UTF-8">
     <title>Plats de la région <?= htmlspecialchars($region) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <?php require_once 'nav_bar.php'; ?>
