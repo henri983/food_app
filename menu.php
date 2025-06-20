@@ -130,7 +130,7 @@ unset($_SESSION['message'], $_SESSION['error']);
                     <p class="card-text text-muted"><?= htmlspecialchars($item['description']) ?></p>
                     <form action="" method="post" class="mt-auto d-flex align-items-center gap-2">
                         <input type="hidden" name="product_id" value="<?= htmlspecialchars($item['id']) ?>" />
-                        <button class="btn btn-outline-primary" class="btn btn-outline-secondary mt-2"><a href="specialites.php?region=<?= htmlspecialchars($item['regionName']) ?>">Voir les plats</a></button>
+                        <a href="specialites.php?region=<?= htmlspecialchars($item['regionName']) ?>" class="btn btn-outline-secondary w-100">Voir les plats</a>
                     </form>
                 </div>
             </div>
