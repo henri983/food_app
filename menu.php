@@ -40,11 +40,14 @@ $food_items = [
         'name' => 'Spécialités Sénégalaises',
         'description' => 'Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise.',
         'image' => 'images_drp/Senegal.png',
+
         'price' => 13.50,
         'regionName' => 'senegal'
- ],
+     ],
 
-];
+
+    ];
+
 
 // --- Gestion ajout au panier ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
